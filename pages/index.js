@@ -12,7 +12,7 @@ export async function getStaticProps() {
   return {
     props: {
       recipes: res.items,
-      revalidate: 1 //最多1s访问页面的用户是否可以重新验证
+      revalidate: 10 //最多1s访问页面的用户是否可以重新验证
     }
   }
 }
