@@ -2,7 +2,7 @@
 import { createClient } from 'contentful'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import Image from 'next/image'
-
+import Skeleton from '../../components/Skeleton'
 
 
 const client = createClient({
@@ -23,7 +23,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false
+    fallback: true,//false返回一个404页面，true表示返回这个页面的回退页面，重新去调用getStaticProps方法，一旦我们得到这个数据，再注入到该组件中
   }
 }
 
@@ -41,6 +41,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export default function RecipeDetails({ recipe }) {
+  if(!recipe) return <Skeleton/>
   const { featuredImage, title, cookingTime, ingredients, method } = recipe.fields
 
   return (
