@@ -34,7 +34,8 @@ export const getStaticProps = async ({ params }) => {
   })
 
   return {
-    props: { recipe: items[0] }
+    props: { recipe: items[0] },
+    revalidate: 1 //最多1s访问页面的用户是否可以重新验证
   }
 
 }
