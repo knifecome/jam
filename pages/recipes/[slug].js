@@ -22,7 +22,7 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,//false返回一个404页面，true表示返回这个页面的回退页面，重新去调用getStaticProps方法，一旦我们得到这个数据，再注入到该组件中
+    fallback: true,//如果去一个我们不知道的slug路径：false返回一个404页面；true表示返回这个页面的回退页面，重新去调用getStaticProps方法，一旦我们得到这个数据，再注入到该组件中
   }
 }
 
@@ -50,6 +50,7 @@ export const getStaticProps = async ({ params }) => {
 }
 
 export default function RecipeDetails({ recipe }) {
+  console.log(recipe)
   if(!recipe) return <Skeleton/>
   const { featuredImage, title, cookingTime, ingredients, method } = recipe.fields
 
